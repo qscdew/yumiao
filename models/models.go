@@ -35,8 +35,8 @@ func InitModels(){
 		panic("--- 数据库连接失败")
 	}
 
-	//InitUserModel()
-	//InitBookModel()
+	InitUserModel()
+	InitBookModel()
 
 
 
@@ -65,5 +65,6 @@ func InitUserModel(){
 	database.Model(&NoteSpace{}).AddForeignKey("user_id", "users(id)", "CASCADE", "CASCADE")
 
 	database.Model(&Note{}).AddForeignKey("note_space_id", "note_spaces(id)", "CASCADE", "CASCADE")
+	database.Model(&Note{}).AddForeignKey("user_id", "users(id)", "CASCADE", "CASCADE")
 }
 

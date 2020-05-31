@@ -19,8 +19,6 @@ func GetNoteSpaces(c *gin.Context) {
 //获取指定笔记区域
 func GetNoteSpace(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-
-
 	data:=models.GetNoteSpace(id)
 
 
@@ -32,16 +30,26 @@ func GetNoteSpace(c *gin.Context) {
 
 //修改指定笔记区域
 func EditNoteSpace(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var form models.NoteSpace
+	if c.Bind(&form)==nil{
+		if models.EditNoteSpace(id,form){
+			c.JSON(200, gin.H{
+				"message": "success",
 
-
-	c.JSON(200, gin.H{
-		"message":"success",
-
-	})
+			})
+		}else{
+			c.JSON(400, gin.H{
+				"message": "failed",
+			})
+		}
+	}
 }
 //删除指定笔记区域
 func DeleteNoteSpace(c *gin.Context) {
 
+	id, _ := strconv.Atoi(c.Param("id"))
+	models.DeleteNoteSpace(id)
 
 	c.JSON(200, gin.H{
 		"message":"success",

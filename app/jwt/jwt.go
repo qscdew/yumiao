@@ -1,6 +1,6 @@
 package jwt
-import (
 
+import (
 	jwt "github.com/dgrijalva/jwt-go"
 
 	"time"
@@ -17,9 +17,10 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
+//生成token
 func GenerateToken(username, password string) (string, error) {
 	nowTime := time.Now()
-	expireTime := nowTime.Add(3 * time.Hour)
+	expireTime := nowTime.Add(3 * time.Hour)//token时间为三个小时
 
 	claims := Claims{
 		username,
@@ -49,3 +50,4 @@ func ParseToken(token string) (*Claims, error) {
 
 	return nil, err
 }
+

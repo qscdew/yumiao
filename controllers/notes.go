@@ -28,12 +28,29 @@ func GetNote(c *gin.Context) {
 
 //删除指定笔记
 func DeleteNote(c *gin.Context) {
-
+	id, _ := strconv.Atoi(c.Param("id"))
+	models.DeleteNote(id)
+	c.JSON(200, gin.H{
+		"message": "success",
+	})
 }
 
-//获取指定笔记
+//修改指定笔记
 func EditNote(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var form models.Note
+	if c.Bind(&form)==nil{
+		if models.EditNote(id,form){
+			c.JSON(200, gin.H{
+				"message": "success",
 
+			})
+		}else{
+			c.JSON(400, gin.H{
+				"message": "failed",
+			})
+		}
+	}
 }
 
 

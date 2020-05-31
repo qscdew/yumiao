@@ -8,7 +8,7 @@ import (
 func InitAuthRouter(Group *gin.RouterGroup )  {
 
 	Group.GET("/auth", controllers.GetAuth)
-	Group.POST("/auth/login", controllers.Login)
+	//Group.POST("/auth/login", controllers.Login)
 	Group.POST("/auth/register", controllers.Register)
-	Group.GET("/auth/logout", controllers.Logout)
+	//Group.GET("/auth/logout", controllers.Logout)
 }

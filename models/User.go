@@ -33,6 +33,10 @@ func GetUser(id int)(user User){
 	database.Where("id = ?", id).Find(&user)
 	return
 }
+func GetUserByUsername(username string)(user User){
+	database.Where("username = ?", username).Find(&user)
+	return
+}
 //获取某指定用户的所有notespace
 func GetUserNotespaces(id int)(notespaces []NoteSpace){
 	user := GetUser(id)
